@@ -1,6 +1,5 @@
 set(MASTER_PROJECT_NAME ${PROJECT_NAME})
 project(${MASTER_PROJECT_NAME}_develop)
-find_package(PkgConfig)
 
 # Libraries linker
 get_target_property(DEBUG_POSTFIX ${MASTER_PROJECT_NAME} DEBUG_POSTFIX)

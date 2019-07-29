@@ -25,8 +25,20 @@ find_package(Boost REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Dlib REQUIRED)
 
-# Prepare add library
+# Gather the src files
 aux_source_directory(src SRC_LIST)
+
+# Add CppAD sources if asked
+set(BUILD_CPPAD_INTERFACE FALSE CACHE BOOL "Choose if CppAD interface function should be added to the library")
+if (${BUILD_CPPAD_INTERFACE})
+    find_package(CppAD REQUIRED)
+
+    # Gather the src files and add them to the src_list
+    aux_source_directory(src/AutomaticallyDifferentiables SRC_LIST_CPPAD)
+    list(APPEND SRC_LIST ${SRC_LIST_CPPAD})
+endif(${BUILD_CPPAD_INTERFACE})
+
+# Prepare add library
 if (BUILD_SHARED_LIBS)
     add_library(${PROJECT_NAME} SHARED ${SRC_LIST})
 else()
