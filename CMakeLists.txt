@@ -74,7 +74,11 @@ if (BUILD_EXAMPLE)
     add_subdirectory(example)
 endif()
 
-
+# development folder
+set(BUILD_DEVELOP FALSE CACHE BOOL "Build the development folder")
+if (BUILD_DEVELOP)
+    add_subdirectory(develop)
+endif()
 
 ################################
 # Testing
